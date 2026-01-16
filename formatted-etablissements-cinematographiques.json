@@ -1,0 +1,98 @@
+{
+  "stats": {
+    "total_cinemas": 2061,
+    "total_ecrans": 6298,
+    "total_fauteuils": 1161329,
+    "source": "Data.Gouv (CSV)",
+    "top_regions": [
+      [
+        "AUVERGNE-RHONE-ALPES",
+        324
+      ],
+      [
+        "ILE-DE-FRANCE",
+        311
+      ],
+      [
+        "NOUVELLE AQUITAINE",
+        229
+      ],
+      [
+        "OCCITANIE",
+        218
+      ],
+      [
+        "PROVENCE-ALPES-COTE D'AZUR",
+        199
+      ]
+    ]
+  },
+  "details": {
+    "ILE-DE-FRANCE": {
+      "cinemas": 311,
+      "ecrans": 1195,
+      "fauteuils": 230978
+    },
+    "BRETAGNE": {
+      "cinemas": 120,
+      "ecrans": 328,
+      "fauteuils": 60466
+    },
+    "NORMANDIE": {
+      "cinemas": 104,
+      "ecrans": 300,
+      "fauteuils": 60225
+    },
+    "PAYS DE LA LOIRE": {
+      "cinemas": 124,
+      "ecrans": 347,
+      "fauteuils": 64020
+    },
+    "CENTRE-VAL DE LOIRE": {
+      "cinemas": 73,
+      "ecrans": 211,
+      "fauteuils": 41842
+    },
+    "BOURGOGNE-FRANCHE-COMTE": {
+      "cinemas": 92,
+      "ecrans": 283,
+      "fauteuils": 48624
+    },
+    "OCCITANIE": {
+      "cinemas": 218,
+      "ecrans": 570,
+      "fauteuils": 100020
+    },
+    "NOUVELLE AQUITAINE": {
+      "cinemas": 229,
+      "ecrans": 675,
+      "fauteuils": 119628
+    },
+    "HAUTS DE FRANCE": {
+      "cinemas": 121,
+      "ecrans": 454,
+      "fauteuils": 88227
+    },
+    "AUVERGNE-RHONE-ALPES": {
+      "cinemas": 324,
+      "ecrans": 858,
+      "fauteuils": 153690
+    },
+    "PROVENCE-ALPES-COTE D'AZUR": {
+      "cinemas": 199,
+      "ecrans": 555,
+      "fauteuils": 93297
+    },
+    "GRAND EST": {
+      "cinemas": 127,
+      "ecrans": 488,
+      "fauteuils": 93325
+    },
+    "CORSE": {
+      "cinemas": 19,
+      "ecrans": 34,
+      "fauteuils": 6987
+    }
+  },
+  "chart_url": "https://quickchart.io/chart?c=%7B%22type%22%3A%20%22bar%22%2C%20%22data%22%3A%20%7B%22labels%22%3A%20%5B%22AUVERGNE-RHONE-ALPES%22%2C%20%22ILE-DE-FRANCE%22%2C%20%22NOUVELLE%20AQUITAINE%22%2C%20%22OCCITANIE%22%2C%20%22PROVENCE-ALPES-COTE%20D%27AZUR%22%5D%2C%20%22datasets%22%3A%20%5B%7B%22label%22%3A%20%22Nombre%20de%20cin%5Cu00e9mas%22%2C%20%22data%22%3A%20%5B324%2C%20311%2C%20229%2C%20218%2C%20199%5D%7D%5D%7D%7D"
+}
