@@ -199,6 +199,12 @@ def afficher_graphique_simple():
     except Exception as e:
         print(f"Erreur : {e}")
 
+
+
+
+
+# bonus interface web
+
 def afficher_interface_web():
     """Lance l'interface web complète avec le serveur."""
     print("\n=== Mode Interface Web ===")

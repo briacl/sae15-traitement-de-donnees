@@ -102,6 +102,8 @@ Pour la répartition des tâches, nous avons réalisé un diagramme de Gantt que
 - os
 - sys
 - webbrowser
+- subprocess
+- time
 
 Pour le bonus (interface web) :
 - http.server
@@ -109,16 +111,87 @@ Pour le bonus (interface web) :
 - threading
 
 ### Réalisations de Yanni Delattre-Balcer
-*   **Scraping** : Conception du script `scraper-data.py` (utilisation de `requests`).
 *   **Planification** : Élaboration du **Diagramme de Gantt** pour la gestion de projet.
+*   **Scraping** : Conception du script `scraper-data.py` (utilisation de `requests`).
 *   **Formatage (Partie 1)** : Structure initiale de `formater-data.py` (lecture CSV).
+*   **Gestion GitLab** : Co-versionnage du projet.
 *   **Présentation** : Co-réalisation du diaporama.
 
 ### Réalisations de Briac Le Meillat
 *   **Gestion GitLab** : Initialisation, configuration et co-versionnage du projet.
-*   **Visualisation / Web** : Développement de l'affichage Web et intégration de l'API **QuickChart** (`visualizer-data.py`).
 *   **Formatage (Partie 2)** : Finalisation de `formater-data.py`, gestion des erreurs et cohérence des données.
+*   **Visualisation / Web** : Intégration de l'API **QuickChart**  afin de visualiser dans le navigateur les graphiques des données (`visualizer-data.py`).
+*   **Main** : Conception du script `main.py`, point d'entrée du programme, permettant d'exécuter les scripts en séquence.
 *   **Présentation** : Co-réalisation du diaporama.
+*   **Bonus** : Développement de l'interface web (`visualizer-data.py`).
 
 **Travail commun** : Analyse initiale, tests complets et finalisation du Livrable.
 
+## 📂 Détails des scripts
+
+### 1. Extraction (`scraper-data.py`) : réalisé par Yanni Delattre-Balcer
+#### Objectif
+Récupérer automatiquement le fichier CSV des établissements cinématographiques depuis l'API **data.gouv.fr**.
+
+#### Bibliothèques utilisées
+*   **requests** : Envoi de la requête HTTP GET pour télécharger le fichier.
+
+#### Fonctionnement du script
+1.  Envoie une requête au serveur open data.
+2.  Vérifie le code de statut (200 OK).
+3.  Ecrit le contenu brut dans `etablissements-cinematographiques.csv`.
+4.  Gère les erreurs de connexion éventuelles.
+
+---
+
+### 2. Transformation (`formater-data.py`) : réalisé par Yanni Delattre-Balcer & Briac Le Meillat
+#### Objectif
+Nettoyer le fichier CSV, agréger les données par région et générer les graphiques statiques pour le Web.
+
+#### Bibliothèques utilisées
+*   **csv** : Lecture et parsing du fichier brut.
+*   **json** : Export des données structurées.
+*   **matplotlib** : Génération des graphiques (barres) pour le mode hors-ligne/web local.
+*   **base64 / io** : Encodage des images générées directement dans le JSON.
+
+#### Fonctionnement du script
+1.  Lit le fichier CSV ligne par ligne.
+2.  **Agrégation** : Somme les écrans, fauteuils et cinémas pour chaque région administrative.
+3.  **Nettoyage** : Utilise `try/except` pour ignorer les valeurs corrompues ou manquantes.
+4.  **Génération Graphique** : Crée 3 graphiques avec Matplotlib, les convertit en Base64.
+5.  **Export** : Sauvegarde le tout (stats + images) dans `formatted-etablissements-cinematographiques.json`.
+
+---
+
+### 3. Visualisation (`visualizer-data.py`) : réalisé par Briac Le Meillat
+#### Objectif
+Offrir une interface utilisateur complète (Console + Web) pour consulter les résultats.
+
+#### Bibliothèques utilisées
+*   **requests** : Appel à l'API **QuickChart** (pour le mode graphique simple).
+*   **webbrowser** : Ouverture automatique du navigateur.
+*   **Interface Web (Bonus) -> http.server / socketserver** : Création du serveur web local.
+*   **Interface Web (Bonus) -> threading** : Gestion des tâches en arrière-plan sans bloquer l'interface.
+
+#### Fonctionnement du script
+*   **Mode Graphique Simple** : Lit le JSON et appelle l'API QuickChart pour afficher les courbes dans le navigateur.
+*   **Mode Interface Web (Bonus)** :
+    1.  Lance un serveur HTTP local (Port 8000).
+    2.  Sert une page HTML5/CSS3 moderne ("Dashboard").
+    3.  Affiche les statistiques et injecte les graphiques Base64 générés par le formateur.
+
+---
+
+### 4. Orchestration (`main.py`) : réalisé par Briac Le Meillat
+#### Objectif
+Point d'entrée unique qui automatise toute la chaîne de traitement.
+
+#### Bibliothèques utilisées
+*   **subprocess** : Exécution séquentielle des scripts Python externes.
+*   **time** : Mesure de la performance (temps d'exécution).
+
+#### Fonctionnement du script
+1.  Lance `scraper-data.py` (Extraction).
+2.  Lance `formater-data.py` (Transformation).
+3.  Lance `visualizer-data.py` (Visualisation).
+4.  Gère l'arrêt propre (Ctrl+C) et les erreurs d'exécution pour chaque étape.
