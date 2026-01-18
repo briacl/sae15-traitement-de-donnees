@@ -6,6 +6,12 @@ Projet réalisé dans le cadre de la formation **BUT Réseaux & Télécommunicat
 *   **Yanni Delattre-Balcer**
 *   **Briac Le Meillat**
 
+## License
+
+**© 2026 Yanni Delattre-Balcer & Briac Le Meillat.**
+
+Ce projet est sous license **MIT**.
+
 ---
 
 ## 📝 Présentation du projet
