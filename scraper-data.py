@@ -11,7 +11,7 @@ response = requests.get(url)
 if response.status_code == 200:
 
     # Définition du nom du fichier
-    filename = f"etablissements_cinematographiques.csv"
+    filename = f"etablissements-cinematographiques.csv"
 
 
     # On ouvre (ou créer si inexistant) un fichier pour écrire le contenu
