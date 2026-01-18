@@ -34,10 +34,10 @@ pip install requests matplotlib
 
 ### Exécution
 
-Pour lancer le programme principal (qui vérifiera et lancera les autres scripts si nécessaire) :
+Pour lancer le programme principal (qui exécutera séquentiellement tous les scripts) :
 
 ```bash
-python visualizer-data.py
+python main.py
 ```
 
 Un menu interactif vous proposera deux modes :
@@ -47,6 +47,10 @@ Un menu interactif vous proposera deux modes :
 ---
 
 ## 📂 Architecture technique
+
+### 0. Point d'entrée (`main.py`)
+*   **Rôle** : Chef d'orchestre global.
+*   **Fonction** : Exécute séquentiellement l'extraction, la transformation et la visualisation pour garantir un flux de données à jour.
 
 ### 1. Extraction (`scraper-data.py`)
 *   **Source** : API Data Culture Gouv (fichier CSV).
@@ -63,9 +67,8 @@ Un menu interactif vous proposera deux modes :
 *   **Sortie** : Fichier `formatted-etablissements-cinematographiques.json`.
 
 ### 3. Visualisation (`visualizer-data.py`)
-*   **Rôle** : Chef d'orchestre et interface utilisateur.
+*   **Rôle** : Interface utilisateur.
 *   **Fonctionnalités** :
-    *   Vérifie l'existence des données ; lance le scraper/formater si besoin (`subprocess`).
     *   **Mode QuickChart** : Envoie les données agrégées à `quickchart.io` pour générer le rendu.
     *   **Mode Web** : Serveur HTTP (`http.server`) servant une page HTML5/CSS3 moderne avec tableau de bord.
 
@@ -78,3 +81,44 @@ Un menu interactif vous proposera deux modes :
 ![Graphique](graph-for-readme/Capture%20d'%C3%A9cran%202026-01-17%20171049.png)
 
 ![Liste](graph-for-readme/Capture%20d'%C3%A9cran%202026-01-17%20171107.png)
+
+---
+
+## 👥 Répartition des tâches
+
+Pour la répartition des tâches, nous avons réalisé un diagramme de Gantt que voici :
+
+![Diagramme de Gantt](diagramme-de-gantt.png)
+
+### Technologies utilisées
+
+- Python 3
+- requests
+- csv
+- json
+- matplotlib as plt
+- base64
+- BytesIO from io
+- os
+- sys
+- webbrowser
+
+Pour le bonus (interface web) :
+- http.server
+- socketserver
+- threading
+
+### Réalisations de Yanni Delattre-Balcer
+*   **Scraping** : Conception du script `scraper-data.py` (utilisation de `requests`).
+*   **Planification** : Élaboration du **Diagramme de Gantt** pour la gestion de projet.
+*   **Formatage (Partie 1)** : Structure initiale de `formater-data.py` (lecture CSV).
+*   **Présentation** : Co-réalisation du diaporama.
+
+### Réalisations de Briac Le Meillat
+*   **Gestion GitLab** : Initialisation, configuration et co-versionnage du projet.
+*   **Visualisation / Web** : Développement de l'affichage Web et intégration de l'API **QuickChart** (`visualizer-data.py`).
+*   **Formatage (Partie 2)** : Finalisation de `formater-data.py`, gestion des erreurs et cohérence des données.
+*   **Présentation** : Co-réalisation du diaporama.
+
+**Travail commun** : Analyse initiale, tests complets et finalisation du Livrable.
+

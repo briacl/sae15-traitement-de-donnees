@@ -1,7 +1,10 @@
 import csv
 import json
+# On importe matplotlib pour les graphiques
 import matplotlib.pyplot as plt
+# On importe base64 pour encoder les images en base64
 import base64
+# On importe BytesIO pour les images, permet de stocker les images en mémoire
 from io import BytesIO
 
 # Initialisation d'un dictionnaire vide pour stocker les résultats.
